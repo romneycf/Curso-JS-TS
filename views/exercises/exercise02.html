@@ -5,61 +5,14 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Exercícios - 02</title>
+    <title>Exercícios 02</title>
   </head>
-  <body>
-    <h1>Exercícios Aula 02</h1>
-    <p>
-      Para os exercícios a seguir considere o array abaixo:<br />
-      const itemsList = [<br />
-      { id: 1, modelo: "blusa do naruto", marca: "lacosta", categoria: "blusa",
-      },<br />
-      { id: 2, modelo: "bermuda do naruto", marca: "lacosta", categoria:
-      "bermuda", },<br />
-      { id: 3, modelo: "bandana do naruto", marca: "lacosta", categoria:
-      "acessorios", },<br />
-      ];
-    </p>
-    <p>
-      1- Faça uma função que aceite um parametro,
-      <b> sendo esse o nome de uma categoria</b> e essa funcao deve retornar um
-      novo array com itens apenas que tem a categoria passada como parametro.
-    </p>
-    <div>
-      <div>
-        <select id="selectFilter">
-          <option>blusa</option>
-          <option>bermuda</option>
-          <option>acessorios</option>
-        </select>
-        <button onclick="handleArrayfilter()">Filtrar</button>
-      </div>
-      <div>
-        <textarea id="resposta01" placeholder="Resposta01" disabled></textarea>
-      </div>
+  <body id="body">
+    <div id="header">
+      <h1>Exercícios Aula 02</h1>
+      <h3>Métodos de arrays.</h3>
     </div>
-    <p>
-      2- Faça uma função que retorne um array, com arrays dentro (matriz) que
-      contenham a sequencia de numeros de 1 a 27, separados por 3 em cada array
-      interno. Exemplo: [[1,2,3],[4,5,6],[7,8,9]], até 27..
-    </p>
-    <div>
-      <input type="number" id="input03" placeholder="Tamanho do Array"/>
-      <input type="number" id="input04" placeholder="Agrupar em"/>
-      <button onclick="handleArrayagroup()">Agrupar</button>
-      <textarea id="resposta02" placeholder="Resposta02" disabled></textarea>
-    </div>
-    <p>
-      3- Faça uma função que retorna o array que é <b>resultado do exercício acima</b>,
-      só que ao invés de grupos de 3, vai retornar em cada array interno, a soma
-      dos itens. Exemplo: [[6],[15]...]
-    </p>
-    <div>
-      <textarea id="arrayInput" disabled></textarea>
-      <button onclick="handleSumarraynumbers()">Somar</button>
-      <textarea id="resposta03" disabled placeholder="Resposta03"></textarea>
-    </div>
-    <a href="../../index.html">Voltar</a>
+    <div id="root"></div>
     <script src="../../controllers/exercises/exercise02.js"></script>
   </body>
 </html>

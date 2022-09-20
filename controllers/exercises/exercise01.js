@@ -1,4 +1,5 @@
 "use strict";
+const rootElementExercise01 = document.querySelector("#root");
 function narutinho(num1, num2) {
     return num1 + num2;
 }
@@ -33,3 +34,53 @@ function handleAlucardOfagner() {
     console.log(resposta); //Pq vc pediu
     document.getElementById('resposta03').value = resposta.toFixed(2).toString();
 }
+function render() {
+    if (rootElementExercise01) {
+        rootElementExercise01.innerHTML += `
+        <div class="item-wrapper">
+            <div class="exercise01">
+                <h3>
+                    1- Uma função que recebe dois parametros, e retorna a soma entre eles.
+                </h3>
+                <div>
+                    <input type="number" id="input01" />
+                    <input type="number" id="input02" />
+                    <button onclick="handleNarutinho()">Calcular</button>
+                    <input id="resposta01" class="input-answer" placeholder="Resposta01" disabled type="text" />
+                </div>
+                <hr>
+            </div>
+            <div class="exercise02">
+                <h3>2- Uma função que recebe 5 números, e retorna a média deles.</h3>
+                <div>
+                    <input type="number" id="input03" />
+                    <input type="number" id="input04" />
+                    <input type="number" id="input05" />
+                    <input type="number" id="input06" />
+                    <input type="number" id="input07" />
+                    <button onclick="handleRADmaiorquecodigniter()">Calcular</button>
+                    <input id="resposta02" class="input-answer" placeholder="Resposta02" disabled type="text" />
+                </div>
+                <hr>
+            </div>
+            <div class="exercise03">
+                <h3>
+                    3- Uma função que calcula o IMC (índice de massa corporal) (pesquisem a
+                    formula no google, "formula imc")
+                </h3>
+                <div>
+                    <input placeholder="Peso em Kg" min="0" type="number" id="input08" />
+                    <input placeholder="Altura em Mts" min="0" type="number" id="input09" />
+                    <button onclick="handleAlucardOfagner()">Calcular</button>
+                    <input id="resposta03" class="input-answer" placeholder="Resposta03" disabled type="text" />
+                </div>
+                <hr>
+            </div>
+            <div>
+                <a class="a-button" href="../../index.html">Voltar</a>
+            </div>
+        </div>
+        `;
+    }
+}
+render();
