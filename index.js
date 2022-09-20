@@ -18,8 +18,8 @@ function handleCalcmedia(id) {
     const estilo = document.querySelector("#grade-input-estilo-" + id).value;
     const critatividade = document.querySelector("#grade-input-critatividade-" + id).value;
     const media = calcMedia(Number(funcionalidade), Number(estilo), Number(critatividade));
+    media < 6 ? document.querySelector("#item-final-grade-" + id).style.color = 'red' : document.querySelector("#item-final-grade-" + id).style.color = '';
     (document.querySelector("#item-final-grade-" + id).innerHTML) = media.toString();
-    //(<HTMLInputElement>document.getElementById("#item-final-grade-"+id)).innerText = JSON.stringify(media);
 }
 function render(itens) {
     if (rootElement) {

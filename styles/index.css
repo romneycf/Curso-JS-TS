@@ -23,8 +23,8 @@
 
 .item-wrapper {
   border: 1px solid black;
-  box-shadow: 5px 5px black;
-  background-image: linear-gradient(to bottom, rgb(255, 255, 255), rgb(138, 138, 138));
+  box-shadow: 5px 5px #5C0101;
+  background-color: #eeeeee;
   width: 100%;
   height: 125px;
   display: flex;
@@ -71,7 +71,11 @@
 }
 
 .grade-input {
+  font-size: 16px;
+  height: 25px;
+  background-color: transparent;
   min-width: 175px;
+  border-radius: 0.25rem;
 }
 
 input::-webkit-outer-spin-button,

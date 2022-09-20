@@ -73,7 +73,7 @@ function handleSumarraynumbers() {
     const resposta = sumArrayNumbers(matrix);
     document.getElementById('resposta03').value = JSON.stringify(resposta);
 }
-function render() {
+function renderExercise02() {
     if (rootElementExercise02) {
         rootElementExercise02.innerHTML += `
         <div class="item-wrapper">
@@ -141,4 +141,4 @@ function render() {
         `;
     }
 }
-render();
+renderExercise02();

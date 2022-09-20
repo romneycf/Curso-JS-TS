@@ -40,7 +40,7 @@ function handleAlucardOfagner() {
     (<HTMLInputElement>document.getElementById('resposta03')).value = resposta.toFixed(2).toString();
 }
 
-function render() {
+function renderExercise01() {
     if (rootElementExercise01) {
         rootElementExercise01.innerHTML += `
         <div class="item-wrapper">
@@ -89,4 +89,4 @@ function render() {
         `;
     }
 }
-render();
+renderExercise01();
