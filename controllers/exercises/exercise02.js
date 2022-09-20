@@ -20,11 +20,6 @@ const itemsList = [
         categoria: "acessorios",
     },
 ];
-/*  Faça uma função que aceite um parametro,
-    sendo esse o nome de uma categoria,
-    e essa funcao deve retornar um novo array
-    com itens apenas que tem a categoria passada como parametro.
-*/
 function arrayFilter(filter) {
     const newList = [...itemsList];
     const filteredList = newList.filter((item) => {
@@ -34,11 +29,11 @@ function arrayFilter(filter) {
     });
     return filteredList;
 }
-console.log(arrayFilter("blusa"));
-/*  Faça uma função que retorne um array,
-    com arrays dentro (matriz) que contenham a sequencia de numeros de 1 a 27,
-    separados por 3 em cada array interno. Exemplo: [[1,2,3],[4,5,6],[7,8,9]], até 27.
-*/
+function handleArrayfilter() {
+    const filter = document.getElementById('selectFilter').value;
+    const resposta = arrayFilter(filter);
+    document.getElementById('resposta01').value = JSON.stringify(resposta);
+}
 function arrayAgroup(arraySize, agroupQuantitiy) {
     let parameterArray = [];
     for (let i = 1; i <= arraySize; i++) {
@@ -54,12 +49,13 @@ function arrayAgroup(arraySize, agroupQuantitiy) {
     }
     return agroupedArray;
 }
-console.log(arrayAgroup(27, 3));
-/*  Faça uma função que retorna o array que é resultado do exercício acima,
-    só que ao invés de grupos de 3, vai retornar em cada array interno,
-    a soma dos itens. Exemplo:  [[6],[15]...]
-*/
-const threeAgroupedArray = arrayAgroup(27, 3);
+function handleArrayagroup() {
+    const arraysize = document.getElementById('input03').value;
+    const agroup = document.getElementById('input04').value;
+    const resposta = arrayAgroup(Number(arraysize), Number(agroup));
+    document.getElementById('resposta02').value = JSON.stringify(resposta);
+    document.getElementById('arrayInput').value = JSON.stringify(resposta);
+}
 function sumArrayNumbers(matrix) {
     const newArray = [...matrix];
     return newArray.map((array) => {
@@ -70,5 +66,13 @@ function sumArrayNumbers(matrix) {
         return [sum];
     });
 }
-console.log(sumArrayNumbers(threeAgroupedArray));
-/*-------------------------------------------------------------------------------------------------------------------------------*/ 
+function handleSumarraynumbers() {
+    const arraysize = document.getElementById('input03').value;
+    const agroup = document.getElementById('input04').value;
+    const matrix = arrayAgroup(Number(arraysize), Number(agroup));
+    console.log(matrix);
+    const resposta = sumArrayNumbers(matrix);
+    document.getElementById('resposta03').value = JSON.stringify(resposta);
+}
+// const teste = [[1,2,3],[4,5,6],[7,8,9],[10,11,12],[13,14,15],[16,17,18],[19,20,21],[22,23,24],[25,26,27]];
+// console.log(sumArrayNumbers(teste));
