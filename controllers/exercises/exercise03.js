@@ -32,7 +32,7 @@ const figuras = [
     { id: 11, nome: "Dreams", raridade: "common", categoria: "quote", preco: 0.17, cores: ["branco", "verde"], img_caminho: '../../img/figures/quote1.png' },
     { id: 12, nome: "Fear", raridade: "common", categoria: "quote", preco: 0.99, cores: ["rosa", "branco"], img_caminho: '../../img/figures/quote2.png' },
     { id: 13, nome: "Tears", raridade: "common", categoria: "quote", preco: 1.15, cores: ["roxo", "branco"], img_caminho: '../../img/figures/quote3.png' },
-    { id: 14, nome: "Ready Mode", raridade: "golden legendary", categoria: "eventos", preco: 9999.99, cores: ["cinza", "marrom"], img_caminho: '../../img/figures/ready_mode.png' },
+    { id: 14, nome: "Ready Mode", raridade: "golden-legendary", categoria: "eventos", preco: 9999.99, cores: ["cinza", "marrom"], img_caminho: '../../img/figures/ready_mode.png' },
     { id: 15, nome: "Sexy", raridade: "rare", categoria: "cartoon", preco: 220.00, cores: ["vermelho", "preto"], img_caminho: '../../img/figures/sexy_cartoon.png' },
     { id: 16, nome: "Smile", raridade: "rare", categoria: "cartoon", preco: 180.00, cores: ["cinza", "preto"], img_caminho: '../../img/figures/smile_cartoon.png' },
     { id: 17, nome: "Sunglasses", raridade: "epic", categoria: "cartoon", preco: 110.00, cores: ["cinza", "preto"], img_caminho: '../../img/figures/sunglasses_cartoon.png' },
@@ -47,20 +47,22 @@ function renderExercise03(itens) {
         rootElementExercise03.innerHTML = "";
         itens.forEach((item) => {
             rootElementExercise03.innerHTML += `
-        <div class="item-wrapper">
-            <div class="item-name">
-              <h2>${item.nome}</h2>
+        <div class="card-container">
+            <div class="card-face">
+                <div id="card-${item.raridade}" class="card-back">
+                    <img class="card-back-img" src="../../img/card-back.png" />
+                </div>
+                <div class="item-name">
+                    <h2>${item.nome}</h2>
+                </div>
+                <div class="item-image">
+                    <ims id="imagem-${item.id}" class="imagem-produto" src="${item.img_caminho}" />
+                </div>
+                <div class="item-info">
+                    <h3>${item.raridade}</h3>
+                    <h4>${item.preco.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}</h4>
+                </div>
             </div>
-            <div class="item-image">
-              <img id="imagem-${item.id}" class="imagem-produto" src="${item.img_caminho}" />
-            </div>
-            <div class="item-info">
-              <h3>${item.raridade}</h3>
-              <h4>${item.preco.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}</h4>
-            </div>
-              <div>
-                  <a class="a-button" href="../../index.html">Voltar</a>
-              </div>
         </div>
         `;
         });
