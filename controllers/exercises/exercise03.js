@@ -39,28 +39,50 @@ const figuras = [
     { id: 18, nome: "Xmas", raridade: "rare", categoria: "eventos", preco: 25.12, cores: ["vermelho", "azul"], img_caminho: '../../img/figures/xmas_mode.png' },
 ];
 function playRarity(rarity) {
-    audios[rarity].play();
+    switch (rarity) {
+        case 'rare':
+            var audio = 0;
+            audios[audio].play();
+            break;
+        case 'epic':
+            var audio = 1;
+            audios[audio].play();
+            break;
+        case 'legendary':
+            var audio = 2;
+            audios[audio].play();
+            break;
+        case 'golden-legendary':
+            var audio = 3;
+            audios[audio].play();
+            break;
+        default:
+            null;
+            break;
+    }
 }
-playRarity(2);
+//playRarity(2);
 function renderExercise03(itens) {
     if (rootElementExercise03) {
         rootElementExercise03.innerHTML = "";
         itens.forEach((item) => {
             rootElementExercise03.innerHTML += `
-        <div class="card-container">
-            <div class="card-face">
+        <div class="card-container" onmouseover="playRarity('${item.raridade}')">
+            <div class="card-inner">
                 <div id="card-${item.raridade}" class="card-back">
                     <img class="card-back-img" src="../../img/card-back.png" />
                 </div>
-                <div class="item-name">
-                    <h2>${item.nome}</h2>
-                </div>
-                <div class="item-image">
-                    <ims id="imagem-${item.id}" class="imagem-produto" src="${item.img_caminho}" />
-                </div>
-                <div class="item-info">
-                    <h3>${item.raridade}</h3>
-                    <h4>${item.preco.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}</h4>
+                <div class="card-face">
+                    <div class="item-name">
+                        <h2>${item.nome}</h2>
+                    </div>
+                    <div class="item-image">
+                        <img id="imagem-${item.id}" class="imagem-produto" src="${item.img_caminho}" />
+                    </div>
+                    <div class="item-info">
+                        <h3>${item.raridade}</h3>
+                        <h4>${item.preco.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}</h4>
+                    </div>
                 </div>
             </div>
         </div>
