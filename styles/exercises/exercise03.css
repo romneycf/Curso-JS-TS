@@ -162,13 +162,13 @@
 
 /*------------------------------------------------------------------------------------------------------*/
 .filter-wrapper {
+  color:white;
   display: flex;
   flex-direction: column;
-  justify-content: left;
+  padding: 10px;
   gap: 20px;
-  align-items: left;
-  height: 100%;
-  width: 200px;
+  height: 100vh;
+  width: 180px;
   background: linear-gradient(45deg, #272325 40%, #020104);
   position: fixed;
 }

@@ -1,23 +1,12 @@
 "use strict";
 const rootElementExercise03 = document.querySelector("#root");
-const checkboxCategoria = document.querySelector("#checkbox-filtro-categoria");
-const inputFiltroCategoria = document.querySelector("#input-filtro-categoria");
-const selectFiltroTamanho = document.querySelector("#select-filtro-tamanho");
-const selectFiltroPreco = document.querySelector("#select-filtro-preco");
-const checkboxCor = document.querySelector("#checkbox-filtro-cor");
+const selectRarityFilter = document.querySelector("#select-rarity-filter");
+const selectPriceOrder = document.querySelector("#select-price-order");
+const applyFilterButton = document.querySelector("#apply-filter-button");
+const inputCategoryFilter = document.querySelector("#input-category-filter");
 const inputFiltroCor1 = document.querySelector("#input-filtro-cor1");
 const inputFiltroCor2 = document.querySelector("#input-filtro-cor2");
 const audios = document.querySelectorAll('audio');
-const blusas = [
-    { id: 1, marca: "lacosta", modelo: "blusa do naruto", preco: 3.5, tamanho: "P", cores: ["amarelo", "preto", "vermelho"], categoria: "blusa", imageUrl: 'https://http2.mlstatic.com/D_NQ_NP_627789-MLB46515960810_062021-W.jpg' },
-    { id: 2, marca: "lafrente", modelo: "Casaco do one piece", preco: 7.0, tamanho: "G", cores: ["branco", "preto", "amarelo"], categoria: "casaco", imageUrl: 'https://http2.mlstatic.com/D_NQ_NP_2X_725801-MLB44062191039_112020-F.webp' },
-    { id: 311, marca: "ardidas", modelo: "blusa do tokyo ghoul", preco: 12.5, tamanho: "M", cores: ["preto", "branco", "vermelho"], categoria: "blusa", imageUrl: 'https://img.elo7.com.br/product/zoom/1CA16D8/camiseta-tokyo-ghoul-kaneki-camiseta.jpg' },
-    { id: 4, marca: "puma", modelo: "blusa do jujutsu no kaizen", preco: 12.99, tamanho: "G", cores: ["preto", "branco", "azul", "verde"], categoria: "camisa", imageUrl: 'https://www.streetanime.com.br/arquivos/PRODUTOS/3501619183158948393/1_GG_Camisa-Jujutsu-Kaisen-Yuji-Megumi-Nobara-Sat.jpg' },
-    { id: 5, marca: "calvo cleide", modelo: "blusa do kimetsu no yaiba", preco: 32.99, tamanho: "M", cores: ["branco", "verde", "preto"], categoria: "camisa", imageUrl: 'https://cf.shopee.com.br/file/238ed9ae75bc8490cb57eee1ed352c2e' },
-    { id: 6, marca: "pia", modelo: "blusa do boruto", preco: 1.99, tamanho: "G", cores: ["preto", "amarelo", "azul"], categoria: "blusa", imageUrl: 'https://cf.shopee.com.br/file/97284bb98b6c4805e43b2c1903d5db08' },
-    { id: 21, marca: "cavalera", modelo: "blusa do cavalo de fogo", preco: 8.99, tamanho: "GG", cores: ["branco", "roxo", "vermelho"], categoria: "blusa", imageUrl: 'http://d3ugyf2ht6aenh.cloudfront.net/stores/186/674/products/camiseta-cinza-cavalo-de-fogo-nostalgia-desenho-animado-anos-70-80-90-16301-f2bcfc1253b9608e3915709119586563-640-0.jpg' },
-    { id: 123, marca: "reserva", modelo: "blusa do cavalo de fogo azul", preco: 25.99, tamanho: "G", cores: ["azul", "branco", "vermelho", "preto"], categoria: "blusa", imageUrl: 'https://http2.mlstatic.com/D_NQ_NP_768880-MLB46470593884_062021-O.jpg' },
-];
 const figuras = [
     { id: 1, nome: "Alucard e Jesus", raridade: "rare", categoria: "eventos", preco: 33.33, cores: ["amarelo", "preto", "azul"], img_caminho: '../../img/figures/alucard_and_jesus.png' },
     { id: 2, nome: "Dark Mode", raridade: "common", categoria: "dark", preco: 666.66, cores: ["preto", "marrom"], img_caminho: '../../img/figures/dark_mode.png' },
@@ -61,7 +50,68 @@ function playRarity(rarity) {
             break;
     }
 }
-//playRarity(2);
+function categoryFilter(figuresArray = figuras) {
+    let newFigures = figuresArray;
+    if (inputCategoryFilter) {
+        const inputCategoryFilterValue = inputCategoryFilter.value.toLowerCase();
+        newFigures = newFigures.filter((figures) => figures['categoria'].includes(inputCategoryFilterValue));
+    }
+    return newFigures;
+}
+function rarityFilter(figuresArray = figuras) {
+    const selectRarityFilterValue = selectRarityFilter.value;
+    let newFigures = figuresArray;
+    if (selectRarityFilterValue !== 'All') {
+        newFigures = newFigures.filter((figures) => figures['raridade'].includes(selectRarityFilterValue));
+    }
+    return newFigures;
+}
+function priceFilter(figuresArray = figuras) {
+    const selectPriceOrderValue = selectPriceOrder.value;
+    let newFigures = figuresArray;
+    if (selectPriceOrderValue === 'crescente') {
+        newFigures = newFigures.sort((a, b) => a.preco < b.preco ? -1 : a.preco > b.preco ? 1 : 0);
+    }
+    if (selectPriceOrderValue === 'decrescente') {
+        newFigures = newFigures.sort((a, b) => a.preco > b.preco ? -1 : a.preco < b.preco ? 1 : 0);
+    }
+    return newFigures;
+}
+function colorFilter(figuresArray = figuras) {
+    let newFigures = figuresArray;
+    if (inputFiltroCor1 || inputFiltroCor2) { //mudar pra if interno com cor 2
+        const inputFiltroCor1Value = inputFiltroCor1.value.toLowerCase();
+        if (inputFiltroCor1Value !== '') {
+            newFigures = newFigures.filter((figures) => {
+                let flag = false;
+                figures['cores'].forEach((e) => {
+                    if (e.includes(inputFiltroCor1Value))
+                        flag = true;
+                });
+                return flag;
+            });
+        }
+        const inputFiltroCor2Value = inputFiltroCor2.value.toLowerCase();
+        if (inputFiltroCor2Value !== '') {
+            newFigures = newFigures.filter((figures) => {
+                let flag = false;
+                figures['cores'].forEach((e) => {
+                    if (e.includes(inputFiltroCor2Value))
+                        flag = true;
+                });
+                return flag;
+            });
+        }
+    }
+    return newFigures;
+}
+function applyFilters() {
+    let newFigures = categoryFilter(figuras);
+    newFigures = rarityFilter(newFigures);
+    newFigures = priceFilter(newFigures);
+    newFigures = colorFilter(newFigures);
+    renderExercise03(newFigures);
+}
 function renderExercise03(itens) {
     if (rootElementExercise03) {
         rootElementExercise03.innerHTML = "";
@@ -90,121 +140,4 @@ function renderExercise03(itens) {
         });
     }
 }
-function scaleFontSize() {
-    const nomeProdutos = document.getElementsByTagName('h2');
-    for (let i = 0; i < nomeProdutos.length; i++) {
-        if (nomeProdutos[i].innerHTML.length > 30) {
-            nomeProdutos[i].style.fontSize = '22px';
-        }
-        if (nomeProdutos[i].innerHTML.length > 100) {
-            nomeProdutos[i].style.fontSize = '18px';
-        }
-        if (nomeProdutos[i].innerHTML.length > 150) {
-            nomeProdutos[i].style.fontSize = '15px';
-        }
-        if (nomeProdutos[i].innerHTML.length > 160) {
-            // console.log(nomeProdutos[i].innerHTML )
-            const textoLimitado = nomeProdutos[i].innerHTML.substring(0, 160) + '...';
-            // console.log(textoLimitado);
-            nomeProdutos[i].innerText = textoLimitado;
-        }
-    }
-}
-function filtraCategoria(arrayDeBlusas = blusas) {
-    const checkboxCategoriaChecked = checkboxCategoria.checked;
-    let newBlusas = arrayDeBlusas;
-    if (checkboxCategoriaChecked) {
-        const inputFiltroCategoriaValue = inputFiltroCategoria.value.toLowerCase();
-        console.log(inputFiltroCategoriaValue);
-        newBlusas = newBlusas.filter((blusa) => blusa['categoria'].includes(inputFiltroCategoriaValue));
-    }
-    return newBlusas;
-}
-function filtraTamanho(arrayDeBlusas = blusas) {
-    const selectFiltroTamanhoValue = selectFiltroTamanho.value;
-    let newBlusas = arrayDeBlusas;
-    if (selectFiltroTamanhoValue !== 'Todos') {
-        newBlusas = newBlusas.filter((blusa) => blusa['tamanho'].includes(selectFiltroTamanhoValue));
-    }
-    return newBlusas;
-}
-function filtraPreco(arrayDeBlusas = blusas) {
-    const selectFiltroPrecoValue = selectFiltroPreco.value;
-    let newBlusas = arrayDeBlusas;
-    if (selectFiltroPrecoValue === 'crescente') {
-        newBlusas = newBlusas.sort((a, b) => a.preco < b.preco ? -1 : a.preco > b.preco ? 1 : 0);
-    }
-    if (selectFiltroPrecoValue === 'decrescente') {
-        newBlusas = newBlusas.sort((a, b) => a.preco > b.preco ? -1 : a.preco < b.preco ? 1 : 0);
-    }
-    return newBlusas;
-}
-function filtraCor(arrayDeBlusas = blusas) {
-    const checkboxCorChecked = checkboxCor.checked;
-    let newBlusas = arrayDeBlusas;
-    if (checkboxCorChecked) {
-        const inputFiltroCor1Value = inputFiltroCor1.value.toLowerCase();
-        if (inputFiltroCor1Value !== '') {
-            newBlusas = newBlusas.filter((blusa) => {
-                let flag = false;
-                blusa['cores'].forEach((e) => {
-                    if (e.includes(inputFiltroCor1Value))
-                        flag = true;
-                });
-                return flag;
-            });
-        }
-        console.log(newBlusas);
-        const inputFiltroCor2Value = inputFiltroCor2.value.toLowerCase();
-        if (inputFiltroCor2Value !== '') {
-            newBlusas = newBlusas.filter((blusa) => {
-                let flag = false;
-                blusa['cores'].forEach((e) => {
-                    if (e.includes(inputFiltroCor2Value))
-                        flag = true;
-                });
-                return flag;
-            });
-        }
-        console.log(newBlusas);
-    }
-    return newBlusas;
-}
-function aplicaFiltros() {
-    let newBlusas = filtraCategoria();
-    newBlusas = filtraTamanho(newBlusas);
-    newBlusas = filtraPreco(newBlusas);
-    newBlusas = filtraCor(newBlusas);
-    renderExercise03(newBlusas);
-    scaleFontSize();
-}
-function eventListenerHandleInputCategoria() {
-    inputFiltroCategoria === null || inputFiltroCategoria === void 0 ? void 0 : inputFiltroCategoria.addEventListener("keyup", aplicaFiltros);
-}
-function eventListenerHandleCheckboxCategoria() {
-    checkboxCategoria.addEventListener("change", aplicaFiltros);
-}
-function eventListenerHandleSelectTamanho() {
-    selectFiltroTamanho.addEventListener("change", aplicaFiltros);
-}
-function eventListenerHandleSelectPreco() {
-    selectFiltroPreco.addEventListener("change", aplicaFiltros);
-}
-function eventListenerHandleInputCor1() {
-    inputFiltroCor1 === null || inputFiltroCor1 === void 0 ? void 0 : inputFiltroCor1.addEventListener("keyup", aplicaFiltros);
-}
-function eventListenerHandleInputCor2() {
-    inputFiltroCor2 === null || inputFiltroCor2 === void 0 ? void 0 : inputFiltroCor2.addEventListener("keyup", aplicaFiltros);
-}
-function eventListenerHandleCheckboxCor() {
-    checkboxCor.addEventListener("change", aplicaFiltros);
-}
 renderExercise03(figuras);
-eventListenerHandleInputCategoria();
-eventListenerHandleCheckboxCategoria();
-eventListenerHandleSelectTamanho();
-eventListenerHandleSelectPreco();
-eventListenerHandleCheckboxCor();
-eventListenerHandleInputCor1();
-eventListenerHandleInputCor2();
-scaleFontSize();
