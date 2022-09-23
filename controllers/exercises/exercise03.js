@@ -6,7 +6,7 @@ const applyFilterButton = document.querySelector("#apply-filter-button");
 const inputCategoryFilter = document.querySelector("#input-category-filter");
 const inputFiltroCor1 = document.querySelector("#input-filtro-cor1");
 const inputFiltroCor2 = document.querySelector("#input-filtro-cor2");
-const audios = document.querySelectorAll('audio');
+const audioss = document.querySelectorAll('audio');
 const figuras = [
     { id: 1, nome: "Alucard e Jesus", raridade: "rare", categoria: "eventos", preco: 33.33, cores: ["amarelo", "preto", "azul"], img_caminho: '../../img/figures/alucard_and_jesus.png' },
     { id: 2, nome: "Dark Mode", raridade: "common", categoria: "dark", preco: 666.66, cores: ["preto", "marrom"], img_caminho: '../../img/figures/dark_mode.png' },
@@ -62,7 +62,9 @@ function rarityFilter(figuresArray = figuras) {
     const selectRarityFilterValue = selectRarityFilter.value;
     let newFigures = figuresArray;
     if (selectRarityFilterValue !== 'All') {
-        newFigures = newFigures.filter((figures) => figures['raridade'].includes(selectRarityFilterValue));
+        newFigures = newFigures.filter((figures) => {
+            return figures.raridade === (selectRarityFilterValue) ? true : false;
+        });
     }
     return newFigures;
 }
@@ -123,13 +125,13 @@ function renderExercise03(itens) {
                     <img class="card-back-img" src="../../img/card-back.png" />
                 </div>
                 <div class="card-face">
-                    <div class="item-name">
+                    <div class="card-name">
                         <h2>${item.nome}</h2>
                     </div>
-                    <div class="item-image">
-                        <img id="imagem-${item.id}" class="imagem-produto" src="${item.img_caminho}" />
+                    <div class="card-image">
+                        <img id="img-${item.id}" class="card-img" src="${item.img_caminho}" />
                     </div>
-                    <div class="item-info">
+                    <div class="card-info">
                         <h3>${item.raridade}</h3>
                         <h4>${item.preco.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}</h4>
                     </div>

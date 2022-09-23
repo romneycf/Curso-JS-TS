@@ -7,13 +7,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Exercícios 03</title>
   </head>
-  <body>
+  <body id="body">
     <audio id="rare" src="../../sounds/rarity/raro.mp3" preload="auto"></audio>
     <audio id="epic" src="../../sounds/rarity/epico.mp3" preload="auto"></audio>
     <audio id="legendary" src="../../sounds/rarity/lendario.mp3" preload="auto"></audio>
     <audio id="golden-legendary" src="../../sounds/rarity/dourado-lendario.mp3" preload="auto"></audio>
-    <div class="filter-wrapper">
+    <header class="header">
       <h2>AluCARD'store</h2>
+    </header>
+    <div class="filter-wrapper">
       <select id="select-rarity-filter" value="All">
         <option value="All">Raridade</option>
         <option value="rare">Rare</option>
@@ -21,21 +23,14 @@
         <option value="legendary">Legendary</option>
         <option value="golden-legendary">Golden-Legendary</option>
       </select>
-
       <select id="select-price-order" value="Price">
         <option value="Todos">Preco</option>
         <option value="crescente">Menor -> Maior</option>
         <option value="decrescente">Maior -> Menor</option>
       </select>
-
       <input type="text" placeholder="Categoria" id="input-category-filter" />
-
       <input type="text" placeholder="Primeira cor" id="input-filtro-cor1" />
       <input type="text" placeholder="Segunda cor" id="input-filtro-cor2" />
-      <label class="toggle">
-        <input type="checkbox" id="checkbox-filtro-cor"></input>
-        <span></span>
-      </label>
       <button id="apply-filter-button" onclick="applyFilters()">Apply</button>
       <button><a class="a-button" href="../../index.html">Voltar</a></button>
     </div>
