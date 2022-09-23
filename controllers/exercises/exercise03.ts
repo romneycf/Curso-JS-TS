@@ -5,7 +5,7 @@ const applyFilterButton = document.querySelector("#apply-filter-button");
 const inputCategoryFilter = document.querySelector("#input-category-filter");
 const inputFiltroCor1 = document.querySelector("#input-filtro-cor1");
 const inputFiltroCor2 = document.querySelector("#input-filtro-cor2");
-const audioss = document.querySelectorAll('audio');
+const audios = document.querySelectorAll('audio');
 
 
 type Figura = { id: number; nome: string; raridade: string; categoria: string; preco: number; cores: string[]; img_caminho: string; }

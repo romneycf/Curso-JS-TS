@@ -12,27 +12,26 @@
     <audio id="epic" src="../../sounds/rarity/epico.mp3" preload="auto"></audio>
     <audio id="legendary" src="../../sounds/rarity/lendario.mp3" preload="auto"></audio>
     <audio id="golden-legendary" src="../../sounds/rarity/dourado-lendario.mp3" preload="auto"></audio>
-    <header class="header">
-      <h2>AluCARD'store</h2>
-    </header>
     <div class="filter-wrapper">
-      <select id="select-rarity-filter" value="All">
+      <span class="shop-name">AluCARD'sTore</span>
+      <label>Filters</label>
+      <select class="custom-select" id="select-rarity-filter" value="All">
         <option value="All">Raridade</option>
         <option value="rare">Rare</option>
         <option value="epic">Epic</option>
         <option value="legendary">Legendary</option>
         <option value="golden-legendary">Golden-Legendary</option>
       </select>
-      <select id="select-price-order" value="Price">
+      <select class="custom-select" id="select-price-order" value="Price">
         <option value="Todos">Preco</option>
         <option value="crescente">Menor -> Maior</option>
         <option value="decrescente">Maior -> Menor</option>
       </select>
-      <input type="text" placeholder="Categoria" id="input-category-filter" />
-      <input type="text" placeholder="Primeira cor" id="input-filtro-cor1" />
-      <input type="text" placeholder="Segunda cor" id="input-filtro-cor2" />
-      <button id="apply-filter-button" onclick="applyFilters()">Apply</button>
-      <button><a class="a-button" href="../../index.html">Voltar</a></button>
+      <input class="custom-input" type="text" placeholder="Categoria" id="input-category-filter" />
+      <input class="custom-input" type="text" placeholder="Primeira cor" id="input-filtro-cor1" />
+      <input class="custom-input" type="text" placeholder="Segunda cor" id="input-filtro-cor2" />
+      <a class="bt-neon a-button" id="apply-filter-button" onclick="applyFilters()">Apply</a>
+      <a class="a-button" href="../../index.html">Voltar</a>
     </div>
     <div id="root"></div>
   <script src="../../controllers/exercises/exercise03.js"></script>

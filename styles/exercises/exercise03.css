@@ -1,57 +1,61 @@
 @import url("https://fonts.googleapis.com/css2?family=Sora:wght@300&display=swap");
-/* http://meyerweb.com/eric/tools/css/reset/ 
-   v2.0 | 20110126
-   License: none (public domain)
-*/
-
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed, 
-figure, figcaption, footer, header, hgroup, 
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font-size: 100%;
-	font: inherit;
-	vertical-align: baseline;
-}
-/* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure, 
-footer, header, hgroup, menu, nav, section {
-	display: block;
-}
-body {
-	line-height: 1;
-}
-ol, ul {
-	list-style: none;
-}
-blockquote, q {
-	quotes: none;
-}
-blockquote:before, blockquote:after,
-q:before, q:after {
-	content: '';
-	content: none;
-}
-table {
-	border-collapse: collapse;
-	border-spacing: 0;
-}
+@import url("../reset.css");
+@import url("../bt-neon.css");
 
 #body {
   font-family: sora !important;
   font-size: 13px;
+  background-color: white;
 }
+
+.shop-name{
+font-size: 20px;
+}
+
+.filter-wrapper {
+  background: #1e1f26;
+  box-shadow: 5px -2px 5px 1px rgb(0, 0, 0);
+  color:white;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  gap: 20px;
+  height: 100vh;
+  width: 12vw;
+  position: fixed;
+  padding-top: 62px;
+}
+
+.custom-select{
+  background-color: #747474;
+  color: #fff;
+  font-size: inherit;
+  padding: .5em;
+  padding-right: 2.5em;	
+  border: 0;
+  margin: 0;
+  border-radius: 3px;
+  text-indent: 0.01px;
+  text-overflow: '';
+  -webkit-appearance: button;
+  -moz-appearance: none;
+}
+
+.custom-input{
+  background-color: #747474;
+  color: #fff;
+  padding: .5em;
+  padding-right: 2.5em;	
+  border: 0;
+  margin: 0;
+  border-radius: 3px;
+}
+
+::placeholder {
+  color: #fff;
+  opacity: 1; /* Firefox */
+}
+
 
 #root {
   display: grid;
@@ -214,27 +218,3 @@ table {
 
 /*------------------------------------------------------------------------------------------------------*/
 
-.header {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  padding: ;
-  background-color: #020104;
-  color:white;
-  text-align: center;
-
-}
-
-.filter-wrapper {
-  background: linear-gradient(45deg, #272325 40%, #020104);
-  margin-top: -72px;
-  color:white;
-  display: flex;
-  flex-direction: column;
-  padding: 10px;
-  gap: 20px;
-  height: 100vh;
-  width: 12vw;
-  position: fixed;
-  padding-top: 62px;
-}

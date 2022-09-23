@@ -6,7 +6,7 @@ const applyFilterButton = document.querySelector("#apply-filter-button");
 const inputCategoryFilter = document.querySelector("#input-category-filter");
 const inputFiltroCor1 = document.querySelector("#input-filtro-cor1");
 const inputFiltroCor2 = document.querySelector("#input-filtro-cor2");
-const audioss = document.querySelectorAll('audio');
+const audios = document.querySelectorAll('audio');
 const figuras = [
     { id: 1, nome: "Alucard e Jesus", raridade: "rare", categoria: "eventos", preco: 33.33, cores: ["amarelo", "preto", "azul"], img_caminho: '../../img/figures/alucard_and_jesus.png' },
     { id: 2, nome: "Dark Mode", raridade: "common", categoria: "dark", preco: 666.66, cores: ["preto", "marrom"], img_caminho: '../../img/figures/dark_mode.png' },
