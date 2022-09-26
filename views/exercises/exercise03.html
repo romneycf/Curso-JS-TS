@@ -5,6 +5,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>Exercícios 03</title>
   </head>
   <body id="body">
@@ -24,14 +25,17 @@
       </select>
       <select class="custom-select" id="select-price-order" value="Price">
         <option value="Todos">Preco</option>
-        <option value="crescente">Menor -> Maior</option>
-        <option value="decrescente">Maior -> Menor</option>
+        <option value="crescente">Crescente</option>
+        <option value="decrescente">Decrescente</option>
       </select>
       <input class="custom-input" type="text" placeholder="Categoria" id="input-category-filter" />
       <input class="custom-input" type="text" placeholder="Primeira cor" id="input-filtro-cor1" />
       <input class="custom-input" type="text" placeholder="Segunda cor" id="input-filtro-cor2" />
-      <a class="bt-neon a-button" id="apply-filter-button" onclick="applyFilters()">Apply</a>
-      <a class="a-button" href="../../index.html">Voltar</a>
+      <div class="neon-button">
+        <button class="btn btn-neon" id="apply-filter-button" onclick="applyFilters()">Apply</button>
+        <hr class="border-bottom">
+        <button class="btn btn-neon" id="back-button" onclick="btback3()"><i class="fa-solid fa-arrow-left"></i></button>
+      </div>
     </div>
     <div id="root"></div>
   <script src="../../controllers/exercises/exercise03.js"></script>

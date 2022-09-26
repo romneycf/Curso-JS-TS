@@ -8,7 +8,7 @@ const inputFiltroCor1 = document.querySelector("#input-filtro-cor1");
 const inputFiltroCor2 = document.querySelector("#input-filtro-cor2");
 const audios = document.querySelectorAll('audio');
 const figuras = [
-    { id: 1, nome: "Alucard e Jesus", raridade: "rare", categoria: "eventos", preco: 33.33, cores: ["amarelo", "preto", "azul"], img_caminho: '../../img/figures/alucard_and_jesus.png' },
+    { id: 1, nome: "Alucard n Jesus", raridade: "rare", categoria: "eventos", preco: 33.33, cores: ["amarelo", "preto", "azul"], img_caminho: '../../img/figures/alucard_and_jesus.png' },
     { id: 2, nome: "Dark Mode", raridade: "common", categoria: "dark", preco: 666.66, cores: ["preto", "marrom"], img_caminho: '../../img/figures/dark_mode.png' },
     { id: 3, nome: "Default", raridade: "common", categoria: "cartoon", preco: 0.45, cores: ["rosa", "preto"], img_caminho: '../../img/figures/default_cartoon.png' },
     { id: 4, nome: "Environmental Friendly", raridade: "epic", categoria: "eventos", preco: 1350.00, cores: ["verde"], img_caminho: '../../img/figures/environmental_friendly.png' },
@@ -114,6 +114,16 @@ function applyFilters() {
     newFigures = colorFilter(newFigures);
     renderExercise03(newFigures);
 }
+function modalOpen(id) {
+    return window.location.href = "#open-modal-" + id;
+}
+function modalClose() {
+    return window.location.href = "#";
+}
+//EU SEI QUE DARIA PRA TER FEITO EXPORTANDO A FUNC DE OUTRO ARQUIVO PRA EVITAR FICAR CRIANDO A 'MESMA' FUNC COM NOME DIFRENTE, SÓ NAO DEU TEMPO DE FAZER
+function btback3() {
+    return window.location.href = '../../index.html';
+}
 function renderExercise03(itens) {
     if (rootElementExercise03) {
         rootElementExercise03.innerHTML = "";
@@ -126,16 +136,22 @@ function renderExercise03(itens) {
                 </div>
                 <div class="card-face">
                     <div class="card-name">
-                        <h2>${item.nome}</h2>
+                        <span>${item.nome}</span>
                     </div>
                     <div class="card-image">
-                        <img id="img-${item.id}" class="card-img" src="${item.img_caminho}" />
+                        <img id="img-${item.id}" class="card-img" src="${item.img_caminho}" onclick="modalOpen(${item.id})"/>
                     </div>
                     <div class="card-info">
-                        <h3>${item.raridade}</h3>
-                        <h4>${item.preco.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}</h4>
+                        <span>${item.raridade}</span>
+                        <span>${item.preco.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}</span>
                     </div>
                 </div>
+            </div>
+        </div>
+        <div id="open-modal-${item.id}" class="modal-window" onclick="modalClose()">
+            <div>
+                <a href="#" title="Close" class="modal-close">X</a>
+                <img class="img-full-size" src="${item.img_caminho}">
             </div>
         </div>
         `;

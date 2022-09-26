@@ -26,18 +26,27 @@ function handleCalcmedia(id: number){
     ((document.querySelector("#item-final-grade-"+id) as HTMLSpanElement).innerHTML) = media.toString();
 }
 
+function btaccess(link: string){
+ return window.location.href = link;
+}
 
 function render(itens: Exercise[]) {
     if (rootElement) {
         rootElement.innerHTML = "";
         itens.forEach((item) => {
             rootElement.innerHTML += `
-        <div class="item-wrapper">
+        <div class="item-wrapper neon-card">
             <div class="item-description">
               <h2>${item.id} - ${item.tema}</h2>
               <h3>${item.descrição}</h2>
-                <div class="item-link">
-                    <a class="a-button" href="${item.link}">Acessar</a>
+                <div class="neon-button">
+                    <button class="btn btn-neon" onclick="btaccess('${item.link}')">            
+                        <span></span>
+                        <span></span>           
+                        <span></span>
+                        <span></span>
+                        Acessar
+                    </button>
                 </div>
             </div>
             <div class="item-grades">

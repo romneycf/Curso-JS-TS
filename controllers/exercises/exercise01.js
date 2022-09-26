@@ -17,7 +17,7 @@ function handleNarutinho() {
     console.log(resposta); //Pq vc pediu
     document.getElementById('resposta01').value = resposta.toString();
 }
-function handleRadmaiorquecodigniter() {
+function handleRadmaiorquecodeigniter() {
     const num03 = document.getElementById('input03').value;
     const num04 = document.getElementById('input04').value;
     const num05 = document.getElementById('input05').value;
@@ -34,32 +34,35 @@ function handleAlucardOfagner() {
     console.log(resposta); //Pq vc pediu
     document.getElementById('resposta03').value = resposta.toFixed(2).toString();
 }
+function btback1() {
+    return window.location.href = '../../index.html';
+}
 function renderExercise01() {
     if (rootElementExercise01) {
         rootElementExercise01.innerHTML += `
-        <div class="item-wrapper">
+        <div class="item-wrapper neon-card neon-button">
             <div class="exercise01">
                 <h3>
                     1- Uma função que recebe dois parametros, e retorna a soma entre eles.
                 </h3>
                 <div>
-                    <input type="number" id="input01" />
-                    <input type="number" id="input02" />
-                    <button onclick="handleNarutinho()">Calcular</button>
-                    <input id="resposta01" class="input-answer" placeholder="Resposta01" disabled type="text" />
+                    <input class="custom-input" type="number" id="input01" />
+                    <input class="custom-input" type="number" id="input02" />
+                    <button class="btn btn-neon bt-small bt-green" onclick="handleNarutinho()">Calcular</button>
+                    <input id="resposta01" class="input-answer custom-input" placeholder="Resposta01" disabled type="text" />
                 </div>
                 <hr>
             </div>
             <div class="exercise02">
                 <h3>2- Uma função que recebe 5 números, e retorna a média deles.</h3>
                 <div>
-                    <input type="number" id="input03" />
-                    <input type="number" id="input04" />
-                    <input type="number" id="input05" />
-                    <input type="number" id="input06" />
-                    <input type="number" id="input07" />
-                    <button onclick="handleRADmaiorquecodigniter()">Calcular</button>
-                    <input id="resposta02" class="input-answer" placeholder="Resposta02" disabled type="text" />
+                    <input class="custom-input" type="number" id="input03" />
+                    <input class="custom-input" type="number" id="input04" />
+                    <input class="custom-input" type="number" id="input05" />
+                    <input class="custom-input" type="number" id="input06" />
+                    <input class="custom-input" type="number" id="input07" />
+                    <button class="btn btn-neon bt-small bt-green" onclick="handleRadmaiorquecodeigniter()">Calcular</button>
+                    <input id="resposta02" class="custom-input" placeholder="Resposta02" disabled type="text" />
                 </div>
                 <hr>
             </div>
@@ -69,15 +72,15 @@ function renderExercise01() {
                     formula no google, "formula imc")
                 </h3>
                 <div>
-                    <input placeholder="Peso em Kg" min="0" type="number" id="input08" />
-                    <input placeholder="Altura em Mts" min="0" type="number" id="input09" />
-                    <button onclick="handleAlucardOfagner()">Calcular</button>
-                    <input id="resposta03" class="input-answer" placeholder="Resposta03" disabled type="text" />
+                    <input class="custom-input" placeholder="Peso em Kg" min="0" type="number" id="input08" />
+                    <input class="custom-input" placeholder="Altura em Mts" min="0" type="number" id="input09" />
+                    <button class="btn btn-neon bt-small bt-green" onclick="handleAlucardOfagner()">Calcular</button>
+                    <input id="resposta03" class="custom-input" placeholder="Resposta03" disabled type="text" />
                 </div>
                 <hr>
             </div>
             <div>
-                <a class="a-button" href="../../index.html">Voltar</a>
+                <button class="btn btn-neon" id="back-button" onclick="btback1()"><i class="fa-solid fa-arrow-left"></i></button>
             </div>
         </div>
         `;

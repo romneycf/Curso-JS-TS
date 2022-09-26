@@ -79,10 +79,14 @@ function handleSumarraynumbers() {
     (<HTMLInputElement>document.getElementById('resposta03')).value = JSON.stringify(resposta);
 }
 
+function btback2() {
+    return window.location.href = '../../index.html';
+}
+
 function renderExercise02() {
     if (rootElementExercise02) {
         rootElementExercise02.innerHTML += `
-        <div class="item-wrapper">
+        <div class="item-wrapper neon-card neon-button">
             <h3>
                 Para os exercícios a seguir considere o array abaixo:<br />
                 itemsList = [
@@ -99,14 +103,14 @@ function renderExercise02() {
                     1- Faça uma função que aceite um parametro, <b> sendo esse o nome de uma categoria</b> e essa funcao deve retornar um novo array com itens apenas que tem a categoria passada como parametro.
                 </h3>
                 <div>
-                    <select id="selectFilter">
+                    <select class="custom-select" id="selectFilter">
                         <option>blusa</option>
                         <option>bermuda</option>
                         <option>acessorios</option>
                     </select>
-                    <button onclick="handleArrayfilter()">Filtrar</button>
+                    <button class="btn btn-neon bt-small bt-purple" onclick="handleArrayfilter()">Filtrar</button>
                 </div>
-                <div>
+                <div class="answer-area-div">
                     <textarea id="resposta01" class="area-answer" placeholder="Resposta01" disabled></textarea>
                 </div>
                 <hr>
@@ -116,13 +120,13 @@ function renderExercise02() {
                     2- Faça uma função que retorne um array, com arrays dentro (matriz) que contenham a sequencia de numeros de 1 a 27, separados por 3 em cada array interno. Exemplo: [[1,2,3],[4,5,6],[7,8,9]], até 27..
                 </h3>
                 <div>
-                    <input type="number" id="input03" placeholder="Tamanho do Array"/>
-                    <input type="number" id="input04" placeholder="Agrupar em"/>
-                    <button onclick="handleArrayagroup()">Agrupar</button>
-                    </div>
-                    <div>
-                        <textarea id="resposta02" class="area-answer" placeholder="Resposta02" disabled></textarea>
-                    </div>
+                    <input class="custom-input" type="number" id="input03" placeholder="Tamanho do Array"/>
+                    <input class="custom-input" type="number" id="input04" placeholder="Agrupar em"/>
+                    <button class="btn btn-neon bt-small bt-purple" onclick="handleArrayagroup()">Agrupar</button>
+                </div>
+                <div class="answer-area-div">
+                    <textarea id="resposta02" class="area-answer" placeholder="Resposta02" disabled></textarea>
+                </div>
                 <hr>
             </div>
             <div class="exercise03">
@@ -130,18 +134,18 @@ function renderExercise02() {
                     3- Faça uma função que retorna o array que é <b>resultado do exercício acima</b>, só que ao invés de grupos de 3, vai retornar em cada array interno, a soma dos itens. Exemplo: [[6],[15]...]
                 </h3>
                 <div>
-                    <div>
+                    <div class="answer-area-div">
                         <textarea id="arrayInput" class="area-answer" disabled></textarea>
                     </div>
-                    <button onclick="handleSumarraynumbers()">Somar</button>
-                    <div>
+                    <button class="btn btn-neon bt-small bt-purple" onclick="handleSumarraynumbers()">Somar</button>
+                    <div class="answer-area-div">
                         <textarea id="resposta03" class="area-answer" disabled placeholder="Resposta03"></textarea>
                     </div>
                     <hr>
                 </div>
             </div>
             <div>
-                <a class="a-button" href="../../index.html">Voltar</a>
+                <button class="btn btn-neon" id="back-button" onclick="btback2()"><i class="fa-solid fa-arrow-left"></i></button>
             </div>
         </div>
         `;
