@@ -3,7 +3,9 @@ const rootElement = document.querySelector("#root");
 const exercises = [
     { id: 1, tema: 'Funções', descrição: 'Funções matemáticas simples.', link: '/views/exercises/exercise01.html' },
     { id: 2, tema: 'Arrays', descrição: 'Métodos de arrays.', link: '/views/exercises/exercise02.html' },
-    { id: 3, tema: 'Lojinha', descrição: 'Modelo de e-comerce.', link: '/views/exercises/exercise03.html' }
+    { id: 3, tema: 'Lojinha', descrição: 'Modelo de e-comerce.', link: '/views/exercises/exercise03.html' },
+    { id: 4, tema: 'Requisição', descrição: 'Fetch', link: '/views/exercises/exercise04.html' },
+    { id: 5, tema: 'Consumo Api', descrição: 'API', link: '/views/exercises/exercise05.html' }
 ];
 function calcMedia(...args) {
     let sum = 0;

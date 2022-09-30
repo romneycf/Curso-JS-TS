@@ -1,31 +1,44 @@
 @import url("https://fonts.googleapis.com/css2?family=Sora:wght@300&display=swap");
-@import url("../reset.css");
+@import url("../neon-card.css");
 @import url("../neon-button.css");
 
 #body {
   padding: 15px;
   font-family: sora !important;
+  font-size: 13px;
+  background: rgb(14, 14, 14);
+  background: radial-gradient(
+    circle,
+    rgba(14, 14, 14, 1) 0%,
+    rgba(52, 52, 52, 1) 50%,
+    rgba(20, 20, 20, 1) 100%
+  );
 }
 
-.exercise01 {
-  border: 1px solid black;
+#header {
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  color: #fff;
+}
+
+#root {
+  padding: 50px;
+}
+
+#root .neon-card:nth-child(1):before, #root .neon-card:nth-child(1):after {
+  background: linear-gradient(235deg, #89ff00, #fbff00);
+}
+
+.item-wrapper {
   padding: 10px;
+  position: relative;
+  display: flex;
   flex-direction: column;
   justify-content: space-between;
   border-radius: 8px;
-  color: #f2f2f2;
-  background: linear-gradient(45deg, #272325 40%, #020104);
-}
-
-#answer01{
-  padding-top: 10px;
-  resize: none;
-  width: 40%;
-  height: 100px;
-  border: 1px solid black;
-  background-color: #747474;
-  color: #fff;
-  border-radius: 3px;
 }
 
 .custom-input {
@@ -36,7 +49,6 @@
   border: 0;
   margin: 0;
   border-radius: 3px;
-  border: 1px solid black;
 }
 
 ::placeholder {
@@ -48,4 +60,42 @@ input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
+}
+
+.answer-area-div{
+  display: flex;
+  flex-direction: column;
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+
+.area-answer {
+  resize: none;
+  width: 100%;
+  height: 100%;
+  border: none;
+  background-color: #747474;
+  color: #fff;
+  border-radius: 3px;
+}
+
+.bt-yellow {
+  color: #fbff00;
+}
+
+.bt-yellow:hover {
+  color: white !important;
+  background-color: #fbff00 !important;
+  box-shadow: 0 0 10px #fbff00, 0 0 30px #fbff00, 0 0 50px #fbff00 !important; 
+}
+
+#back-button {
+  padding: 10px;
+  color: #820505;
+}
+
+#back-button:hover {
+  color: white;
+  background-color: #820505;
+  box-shadow: 0 0 10px #820505, 0 0 30px #820505, 0 0 50px #820505;
 }

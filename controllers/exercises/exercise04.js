@@ -8,10 +8,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-const input01 = document.querySelector("#input01");
-const btPesquisar = document.querySelector("#btPesquisar");
-const answer01 = document.querySelector("#answer01");
 const rootElementExercise04 = document.querySelector("#root");
+const btPesquisar = document.querySelector("#btPesquisar");
 function search(cep) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
@@ -23,18 +21,20 @@ function search(cep) {
         }
     });
 }
-btPesquisar === null || btPesquisar === void 0 ? void 0 : btPesquisar.addEventListener('click', function () {
+function handleCepSearch() {
     return __awaiter(this, void 0, void 0, function* () {
+        const input01 = document.querySelector("#input01");
         const input01Value = input01.value;
         if (input01Value.length == 8) {
             const resposta = yield search(input01Value);
-            document.getElementById('answer01').value = JSON.stringify(resposta);
+            console.log(resposta);
+            renderApiResponse(resposta);
         }
         else {
             alert("Digite um CEP válido (8 digitos)");
         }
     });
-});
+}
 const obj = {
     courses: [
         {
@@ -296,3 +296,83 @@ const obj = {
         },
     ],
 };
+function btback() {
+    return window.location.href = '../../index.html';
+}
+function btClear() {
+    renderExercise04();
+}
+function renderApiResponse(response) {
+    const answer01div = document.querySelector("#answer01div");
+    if (answer01div) {
+        answer01div.innerHTML = "";
+        answer01div.innerHTML += `
+                <div style="display: flex; flex-direction: row;  justify-content: space-between;">
+                    <div style="display: flex; flex-direction: column;">
+                        <span>Bairro: </span>
+                        <input class="custom-input" value="${response.bairro}" disabled />
+                    </div>
+                    <div style="display: flex; flex-direction: column;">
+                        <span>Logradouro: </span>
+                        <input class="custom-input" value="${response.logradouro}" disabled />
+                    </div>
+                    <div style="display: flex; flex-direction: column;">
+                        <span>Complemento: </span>
+                        <input class="custom-input" value="${response.complemento}" disabled />
+                    </div>
+                    <div style="display: flex; flex-direction: column;">
+                        <span>Localidade: </span>
+                        <input class="custom-input" value="${response.localidade}" disabled />
+                    </div>
+                </div>
+                <div style="display: flex; flex-direction: row; justify-content: space-between;">
+                    <div style="display: flex; flex-direction: column;">
+                        <span>Uf: </span>
+                        <input class="custom-input" value="${response.uf}" disabled />
+                    </div>
+                    <div style="display: flex; flex-direction: column;">
+                        <span>DDD: </span>
+                        <input class="custom-input" value="${response.ddd}" disabled />
+                    </div>
+                    <div style="display: flex; flex-direction: column;">
+                        <span>Gia: </span>
+                        <input class="custom-input" value="${response.gia}" disabled />
+                    </div>
+                    <div style="display: flex; flex-direction: column;">
+                        <span>IBGE: </span>
+                        <input class="custom-input" value="${response.ibge}" disabled />
+                    </div>
+                </div>
+                <div>
+                    <button class="btn btn-neon bt-small bt-yellow" onclick="btClear()">Limpar</button>
+                </div>
+            `;
+    }
+}
+function renderExercise04() {
+    if (rootElementExercise04) {
+        rootElementExercise04.innerHTML = "";
+        rootElementExercise04.innerHTML += `
+        <div class="item-wrapper neon-card neon-button">
+            <div class="exercise01">
+                <h3>
+                Modelo de Requisição Fetch.
+                </h3>
+                <span>Digite um CEP</span>
+                <input class="custom-input" type="number" id="input01" />
+                <button id="btPesquisar" class="btn btn-neon bt-small bt-yellow" onclick="handleCepSearch();">
+                    Pesquisar
+                </button>
+                <div id="answer01div" class="answer-area-div">    
+                </div>
+                <hr>
+            </div>
+            <div>
+                <button class="btn btn-neon" id="back-button" onclick="btback()"><i class="fa-solid fa-arrow-left"></i></button>
+            </div>
+        </div>
+        </div>
+        `;
+    }
+}
+renderExercise04();

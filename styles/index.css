@@ -3,7 +3,7 @@
 @import url("neon-button.css");
 
 #body {
-  background-image: url("../img/background-homepage.png");
+  background: url("../img/background-homepage.png") no-repeat center center fixed;
   padding: 15px;
   font-family: sora !important;
   font-size: 13px;
@@ -124,6 +124,66 @@
 
 #root .neon-card:nth-child(3) .neon-button .btn.btn-neon span:nth-child(4){
   background: linear-gradient(360deg, transparent 30%, #772aff);
+}
+
+/*-----------------------------------------------------*/
+
+#root .neon-card:nth-child(4) .neon-button .btn{
+  color: #fbff00;
+}
+
+#root .neon-card:nth-child(4) .neon-button .btn:hover {
+  color: white;
+  background-color: #fbff00;
+  box-shadow: 0 0 10px #fbff00,
+              0 0 30px #fbff00,
+              0 0 50px #fbff00;
+}
+
+#root .neon-card:nth-child(4) .neon-button .btn.btn-neon span:nth-child(1){
+  background: linear-gradient(90deg, transparent 30%, #fbff00);
+}
+
+#root .neon-card:nth-child(4) .neon-button .btn.btn-neon span:nth-child(2){
+  background: linear-gradient(180deg, transparent 30%, #fbff00);
+}
+
+#root .neon-card:nth-child(4) .neon-button .btn.btn-neon span:nth-child(3){
+  background: linear-gradient(270deg, transparent 30%, #fbff00);
+}
+
+#root .neon-card:nth-child(4) .neon-button .btn.btn-neon span:nth-child(4){
+  background: linear-gradient(360deg, transparent 30%, #fbff00);
+}
+
+/*-----------------------------------------------------*/
+
+#root .neon-card:nth-child(5) .neon-button .btn{
+  color: #00bcd4;
+}
+
+#root .neon-card:nth-child(5) .neon-button .btn:hover {
+  color: white;
+  background-color: #00bcd4;
+  box-shadow: 0 0 10px #00bcd4,
+              0 0 30px #00bcd4,
+              0 0 50px #00bcd4;
+}
+
+#root .neon-card:nth-child(5) .neon-button .btn.btn-neon span:nth-child(1){
+  background: linear-gradient(90deg, transparent 30%, #00bcd4);
+}
+
+#root .neon-card:nth-child(5) .neon-button .btn.btn-neon span:nth-child(2){
+  background: linear-gradient(180deg, transparent 30%, #00bcd4);
+}
+
+#root .neon-card:nth-child(5) .neon-button .btn.btn-neon span:nth-child(3){
+  background: linear-gradient(270deg, transparent 30%, #00bcd4);
+}
+
+#root .neon-card:nth-child(5) .neon-button .btn.btn-neon span:nth-child(4){
+  background: linear-gradient(360deg, transparent 30%, #00bcd4);
 }
 /*----------------------FIM-------------------------------*/
 
