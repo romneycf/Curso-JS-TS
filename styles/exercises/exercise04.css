@@ -49,6 +49,7 @@
   border: 0;
   margin: 0;
   border-radius: 3px;
+  -moz-appearance: textfield;
 }
 
 ::placeholder {
@@ -72,7 +73,7 @@ input::-webkit-inner-spin-button {
 .area-answer {
   resize: none;
   width: 100%;
-  height: 100%;
+  min-height: 270px;
   border: none;
   background-color: #747474;
   color: #fff;
