@@ -5,8 +5,8 @@
 body {
   font-family: sora !important;
   font-size: 13px;
-  background: radial-gradient(circle, transparent 20%, #e5ebb5 20%, #e5ebb5 80%, transparent 80%, transparent), radial-gradient(circle, transparent 20%, #e5ebb5 20%, #e5ebb5 80%, transparent 80%, transparent) 52.5px 52.5px, linear-gradient(#5a761e 4.2px, transparent 4.2px) 0 -2.1px, linear-gradient(90deg, #5a761e 4.2px, #e5ebb5 4.2px) -2.1px 0;
-  background-size: 105px 105px, 105px 105px, 52.5px 52.5px, 52.5px 52.5px;
+  /* background: radial-gradient(circle, transparent 20%, #e5ebb5 20%, #e5ebb5 80%, transparent 80%, transparent), radial-gradient(circle, transparent 20%, #e5ebb5 20%, #e5ebb5 80%, transparent 80%, transparent) 52.5px 52.5px, linear-gradient(#5a761e 4.2px, transparent 4.2px) 0 -2.1px, linear-gradient(90deg, #5a761e 4.2px, #e5ebb5 4.2px) -2.1px 0;
+  background-size: 105px 105px, 105px 105px, 52.5px 52.5px, 52.5px 52.5px; */
   border: 1px solid blue;
 }
 
@@ -22,21 +22,35 @@ body {
 
 #input-wrapper{
   text-align: center;
+  border: 1px solid cyan;
+  display: flex;
+justify-content: center;
+}
 
+#input-recipe-filter{
+  min-width: 300px;
 }
 
 #recipes-container {
   border: 1px solid purple;
   display: grid;
-  grid-template-columns: repeat(auto-fill, 323px);
+  grid-template-columns: repeat(auto-fill, 370px);
   padding: 50px;
   gap: 15px;
-  text-align: center;
+  text-align: left;
 }
 
 .recipe-card{
-  border: 1px solid black;
+  border: transparent;
+  border-radius: 8px;
+  padding: 5px;
   background-color: grey;
+}
+
+.recipe-img{
+  width: 350px;
+  height: 400px;
+
 }
 
 #back-button {
