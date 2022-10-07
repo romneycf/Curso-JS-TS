@@ -12,7 +12,7 @@ body {
 
 #root{
   border: 1px solid red;
-  padding: 50px;
+  padding: 50px; 
 }
 
 #header{
@@ -31,8 +31,20 @@ justify-content: center;
   min-width: 300px;
 }
 
+#main{
+  display: flex;
+  flex-direction: row;
+  justify-content: end;
+}
+
+#aside{
+  border: 1px solid green;
+  width: 30vw;
+}
+
 #recipes-container {
   border: 1px solid purple;
+  width: 70vw;
   display: grid;
   grid-template-columns: repeat(auto-fill, 370px);
   padding: 50px;

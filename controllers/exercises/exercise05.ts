@@ -94,7 +94,15 @@ function renderExercise05() {
             <button onclick="handleRecipesfilter()"><i class="fa-solid fa-search"></i></button>
             <button onclick="handleRecipes()"><i class="fa-solid fa-rotate"></i></button>
         </div>
-        <div id="recipes-container"></div>
+        <div id="main">
+            <div id="aside">
+                <h1>ASIDE</h1>
+            </div>
+            <div id="recipes-container"></div>
+        </div>
+        <div id="footer">
+            <h1>FOOTER</h1>
+        </div>
         `
     }
 }
