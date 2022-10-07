@@ -58,9 +58,24 @@ function handleRecipesfilter() {
 function renderRecipes(Recipes) {
     return __awaiter(this, void 0, void 0, function* () {
         const recipesContainer = document.querySelector("#recipes-container");
+        const paginatorContainer = document.querySelector("#paginator-container");
+        //CODAR LOGICA DE PAGINADOR AQUI DENTRO( RECIPES JÁ VAI ESTAR FILTRADO, FAZER UMA LOGICA PRA POUCOS RESULTADOS NÃO TER PG)
+        if (paginatorContainer) {
+            paginatorContainer.innerHTML = "";
+            paginatorContainer.innerHTML += `
+        <button>|<</button>
+        <button><</button>
+        <select>
+            <option>20</option>
+            <option>50</option>
+            <option>100</option>
+        </select>
+        <button>></button>
+        <button>>|</button>
+        `;
+        }
         if (recipesContainer) {
             recipesContainer.innerHTML = "";
-            //CODAR LOGICA DE PAGINADOR AQUI DENTRO( RECIPES JÁ VAI ESTAR FILTRADO, FAZER UMA LOGICA PRA POUCOS RESULTADOS NÃO TER PG)
             Recipes.forEach((item) => {
                 recipesContainer.innerHTML += `
         <div class="recipe-card">
@@ -97,10 +112,12 @@ function renderExercise05() {
             <button onclick="handleRecipes()"><i class="fa-solid fa-rotate"></i></button>
         </div>
         <div id="main">
-            <div id="aside">
-                <h1>ASIDE</h1>
+            <div id="main-upper">
+                <div id="paginator-container"></div>
             </div>
-            <div id="recipes-container"></div>
+            <div id="main-center">
+                <div id="recipes-container"></div>
+            </div>
         </div>
         <div id="footer">
             <h1>FOOTER</h1>

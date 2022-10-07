@@ -7,24 +7,25 @@ body {
   font-size: 13px;
   /* background: radial-gradient(circle, transparent 20%, #e5ebb5 20%, #e5ebb5 80%, transparent 80%, transparent), radial-gradient(circle, transparent 20%, #e5ebb5 20%, #e5ebb5 80%, transparent 80%, transparent) 52.5px 52.5px, linear-gradient(#5a761e 4.2px, transparent 4.2px) 0 -2.1px, linear-gradient(90deg, #5a761e 4.2px, #e5ebb5 4.2px) -2.1px 0;
   background-size: 105px 105px, 105px 105px, 52.5px 52.5px, 52.5px 52.5px; */
-  border: 1px solid blue;
+
 }
 
 #root{
-  border: 1px solid red;
+  border: 1px solid blue;
   padding: 50px; 
 }
 
 #header{
+  border: 1px solid red;
   text-align: center;
   font-size: 30px;
 }
 
 #input-wrapper{
   text-align: center;
-  border: 1px solid cyan;
+  border: 1px solid green;
   display: flex;
-justify-content: center;
+  justify-content: center;
 }
 
 #input-recipe-filter{
@@ -32,24 +33,41 @@ justify-content: center;
 }
 
 #main{
+  border: 1px solid cyan;
   display: flex;
-  flex-direction: row;
-  justify-content: end;
+  flex-direction: column;
+  align-items: center;
 }
 
-#aside{
-  border: 1px solid green;
-  width: 30vw;
+#main-upper{
+  border: 1px solid blue;
+}
+
+#paginator-container{
+  border: 1px solid red;
+  display: flex;
+}
+
+#main-center{
+  border: 1px solid pink;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
 }
 
 #recipes-container {
   border: 1px solid purple;
-  width: 70vw;
+  width: 100%;
   display: grid;
   grid-template-columns: repeat(auto-fill, 370px);
   padding: 50px;
   gap: 15px;
   text-align: left;
+}
+
+#footer{
+  border: 1px solid grey;
+
 }
 
 .recipe-card{
