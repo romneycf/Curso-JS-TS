@@ -319,7 +319,7 @@ const obj: Objeto = {
     ],
 };
 
-function btback() {
+function btback4() {
     return window.location.href = '../../index.html';
 }
 
@@ -679,7 +679,7 @@ function renderExercise04() {
                 <hr>
             </div> 
             <div>
-                <button class="btn btn-neon" id="back-button" onclick="btback()"><i class="fa-solid fa-arrow-left"></i></button>
+                <button class="btn btn-neon" id="back-button" onclick="btback4()"><i class="fa-solid fa-arrow-left"></i></button>
             </div>
         </div>
         </div>

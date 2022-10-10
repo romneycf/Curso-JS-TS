@@ -7,7 +7,6 @@ body {
   font-size: 13px;
   /* background: radial-gradient(circle, transparent 20%, #e5ebb5 20%, #e5ebb5 80%, transparent 80%, transparent), radial-gradient(circle, transparent 20%, #e5ebb5 20%, #e5ebb5 80%, transparent 80%, transparent) 52.5px 52.5px, linear-gradient(#5a761e 4.2px, transparent 4.2px) 0 -2.1px, linear-gradient(90deg, #5a761e 4.2px, #e5ebb5 4.2px) -2.1px 0;
   background-size: 105px 105px, 105px 105px, 52.5px 52.5px, 52.5px 52.5px; */
-
 }
 
 #root{
@@ -20,6 +19,76 @@ body {
   text-align: center;
   font-size: 30px;
 }
+
+#best-authors-wrapper{
+  border: 1px solid blue;
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+}
+
+.author-div{
+  display: flex;
+  flex-direction: column;
+}
+
+.author-img{
+  background-color: #e5ebb5;
+  width: 100px;
+  height: 100px;
+  box-shadow: 0 0 0 5px #f66;
+  border-radius: 50%;
+}
+
+.author-img:hover{
+  cursor: pointer;
+  animation: bounceOut 0.4s linear infinite;
+}
+
+@keyframes bounceOut {
+  0% {
+    box-shadow: 0 0 0 4px #f66;
+    opacity: 1;
+  }
+  25% {
+    box-shadow: 0 0 0 1px #f66;
+    opacity: 1;
+  }
+  50% {
+    box-shadow: 0 0 0 7px #f66;
+    opacity: 1;
+  }
+  75% {
+    box-shadow: 0 0 0 4px #f66;
+    opacity: 1;
+  }
+  100% {
+    box-shadow: 0 0 0 5px #f66;
+    opacity: 1;
+  }
+}
+
+.name {
+  color: black;
+  font-size: 15px;
+  font-weight: 600;
+  margin-top: 6px;
+  text-align: center;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 #input-wrapper{
   text-align: center;
@@ -59,7 +128,7 @@ body {
   border: 1px solid purple;
   width: 100%;
   display: grid;
-  grid-template-columns: repeat(auto-fill, 370px);
+  grid-template-columns: repeat(auto-fill, 330px);
   padding: 50px;
   gap: 15px;
   text-align: left;
@@ -78,10 +147,40 @@ body {
 }
 
 .recipe-img{
-  width: 350px;
-  height: 400px;
-
+  width: 300px;
+  height: 300px;
 }
+
+.modal-window {
+  position: fixed;
+  background-color: rgba(255, 255, 255, 0.25);
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 999;
+  visibility: hidden;
+  pointer-events: none;
+  transition: all 0.3s;
+}
+
+.modal-window:target {
+  visibility: visible;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal-window > div {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 2em;
+  border: 1px solid grey;
+  background-color: white;
+  border-radius: 8px;
+}
+
 
 #back-button {
   padding: 10px;

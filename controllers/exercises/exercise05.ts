@@ -1,6 +1,15 @@
 const rootElementExercise05 = document.querySelector("#root");
+const inputRecipeFilter = document.querySelector("#input-recipe-filter");
 
+type Author = { id: number; nome: string; img_caminho: string; };
 
+const authors: Author[] = [
+    { id: 1, nome: "Jair Messias", img_caminho: '../../img/authors/JM.png' },
+    { id: 2, nome: "Carlos Bolso", img_caminho: '../../img/authors/SC.png' },
+    { id: 3, nome: "Barbinha", img_caminho: '../../img/authors/BR.png' },
+    { id: 4, nome: "Luiz Inácio", img_caminho: '../../img/authors/YB.png' }
+];
+   
 type Recipe = {
     Author: string;
     Description: string;
@@ -16,13 +25,16 @@ async function fetchRecipes(): Promise<Recipe[]> {
     return request.json();
 }
 
-async function handleRecipes() {
+async function handleRecipes(itemsPerPage = 20, initalItem = 0, finalItem = 20) {
     const inputRecipeFilter = document.querySelector("#input-recipe-filter") as HTMLInputElement;
-    inputRecipeFilter.value = '';
+    const inputFilterValue = (inputRecipeFilter as HTMLInputElement).value.toLowerCase();
     //TENTAR IMPLEMENTAR LOADING COM TRY CATCH
     const response = await fetchRecipes();
-    const splice = response.splice(0, 20)
-    renderRecipes(splice);
+    const filteredRecipes = response;//CODAR FILTRO AQUI
+    if (filteredRecipes.length > itemsPerPage){
+        return renderRecipes(filteredRecipes, itemsPerPage, initalItem, finalItem);
+    }
+    renderRecipes(filteredRecipes);
 }
 
 async function filterRecipes(filters: string) {
@@ -38,65 +50,117 @@ async function filterRecipes(filters: string) {
     return filteredRecipes
 }
 
-
-
-async function handleRecipesfilter() {
-    const inputRecipeFilter = document.querySelector("#input-recipe-filter");
-    const inputFilterValue = (inputRecipeFilter as HTMLInputElement).value.toLowerCase().split(",");
-    if (inputFilterValue) {
-        const filteredRecipes = await filterRecipes(inputFilterValue);
-        renderRecipes(filteredRecipes);
-    }
-}
+// async function handleRecipesfilter() {
+//     const inputRecipeFilter = document.querySelector("#input-recipe-filter");
+//     const inputFilterValue = (inputRecipeFilter as HTMLInputElement).value.toLowerCase().split(",");
+//     if (inputFilterValue) {
+//         const filteredRecipes = await filterRecipes(inputFilterValue);
+//         renderRecipes(filteredRecipes);
+//     }
+// }
 
 // async function paginatedItems(items: Recipe[], page:number){
 //     const items_per_page = 20;
 //     const paginatedItems = items.splice(0, items_per_page)
 // }
 
-async function renderRecipes(Recipes: Recipe[]) {
+// function handlePaginator(Recipes: Recipe[], itemsPerPage = 20,  pageNumber = 0){
+//     const arrayLength = Recipes.length;
+//     var splicedRecipe = Recipes;
+//     splicedRecipe = Recipes.splice(pageNumber, itemsPerPage);
+//     return splicedRecipe;
+// }
+
+function btback5(){
+    return window.location.href = '../../index.html';
+}
+
+function modalRecipeOpen(url: string){
+    return window.location.href = "#open-modal-"+url;
+}
+
+function modalRecipeClose(){
+    return window.location.href = "#";
+}
+
+// function recipesSplice(Recipes: Recipe[], initialItem: number, finalItem: number){
+//     const splicedRecipe = Recipes.splice(initialItem, finalItem);
+//     renderRecipes(Recipes, splicedRecipe);
+// }
+
+function handleSelectPaginator(){
+const selectItemsPerPage = document.querySelector("#select-items-per-page");
+const selectItemsPerPageValue = parseInt((selectItemsPerPage as HTMLSelectElement).value);
+handleRecipes(selectItemsPerPageValue, 0 ,selectItemsPerPageValue);   
+}
+
+function renderRecipes(Recipes: Recipe[], itemsPerPage = 20, initalItem = 0, finalItem = 20) {//tentar passar dois recipes como parametro....
     const recipesContainer = document.querySelector("#recipes-container");
     const paginatorContainer = document.querySelector("#paginator-container");
+    var renderedRecipes = Recipes;
+    console.log(Recipes.length);
     //CODAR LOGICA DE PAGINADOR AQUI DENTRO( RECIPES JÁ VAI ESTAR FILTRADO, FAZER UMA LOGICA PRA POUCOS RESULTADOS NÃO TER PG)
-    if(paginatorContainer){
-        paginatorContainer.innerHTML=""; 
-        paginatorContainer.innerHTML +=`
-        <button>|<</button>
-        <button><</button>
-        <select>
-            <option>20</option>
-            <option>50</option>
-            <option>100</option>
-        </select>
-        <button>></button>
-        <button>>|</button>
-        `
+    if (Recipes.length > itemsPerPage){
+        renderedRecipes = Recipes.splice(initalItem, finalItem);
+        if(paginatorContainer){
+            paginatorContainer.innerHTML=""; 
+            paginatorContainer.innerHTML +=`
+            <button onclick="${initalItem} === 0 ? null : handleRecipes(${itemsPerPage}, ${initalItem-(itemsPerPage+1)}, ${finalItem-(itemsPerPage+1)})"><</button>
+            <select id="select-items-per-page" onchange="handleSelectPaginator()">
+                <option value=20>20</option>
+                <option value=50>50</option>
+                <option value=100>100</option>
+            </select>
+            <button onclick="${(Recipes.length)} === ${finalItem}? null : handleRecipes(${itemsPerPage}, ${finalItem+1}, ${finalItem+itemsPerPage+1})">></button>
+            `
+        }
     }
     if (recipesContainer) {
         recipesContainer.innerHTML = "";
-        Recipes.forEach((item) => {
+        renderedRecipes.forEach((item) => {
             recipesContainer.innerHTML += `
-        <div class="recipe-card">
+        <div class="recipe-card" onclick="modalRecipeOpen('${item.url}')">
             <div class="recipe-card-info">
                 <h1 class="recipe-title">'${item.Name}'</h1>
                 <img class="recipe-img" src='${item.urlImage}'>
             </div>
         </div>
-        <div class="modal-window" onclick="modalClose()" style="display: none;">
-            <p class="recipe-desc">'${item.Ingredients}'</p>
-            <a class="view-btn" href='${item.url}'>VER RECEITA</a>
+        <div id="open-modal-${item.url}" class="modal-window" onclick="modalRecipeClose()">
+            <div>
+                <h1 class="recipe-title">'${item.Name}'</h1>
+                <p class="recipe-desc">'${item.Ingredients}'</p>
+                <a class="view-btn" href='${item.url}'>VER RECEITA</a>
+            </div>
         </div>
         `;
         });
     }
 }
 
-function renderExercise05() {
+function renderExercise05(bestAuthors: Author[]) {
     if (rootElementExercise05) {
         rootElementExercise05.innerHTML = "";
         rootElementExercise05.innerHTML += `
         <div id="header">
-            <h1>My Cook Book</h1>
+            <h1>My Cock Book</h1>
+            <div id="best-authors-wrapper">
+                <div class="author-div">
+                    <img class="author-img" src='${bestAuthors[0].img_caminho}'>
+                    <span class="name">${bestAuthors[0].nome}</span>
+                </div>
+                <div class="author-div">
+                    <img class="author-img" src='${bestAuthors[1].img_caminho}'>
+                    <span class="name">${bestAuthors[1].nome}</span>
+                </div>
+                <div class="author-div">
+                    <img class="author-img" src='${bestAuthors[2].img_caminho}'>
+                    <span class="name">${bestAuthors[2].nome}</span>
+                </div>
+                <div class="author-div">
+                    <img class="author-img" src='${bestAuthors[3].img_caminho}'>
+                    <span class="name">${bestAuthors[3].nome}</span>
+                </div>
+            </div>
         </div>
         <div id="input-wrapper">
             <input id="input-recipe-filter"></input>
@@ -119,8 +183,11 @@ function renderExercise05() {
         </div>
         <div id="footer">
             <h1>FOOTER</h1>
+            <div class="neon-button">
+                <button class="btn btn-neon" id="back-button" onclick="btback5()"><i class="fa-solid fa-arrow-left"></i></button>
+            </div>
         </div>
         `
     }
 }
-renderExercise05();
+renderExercise05(authors);
