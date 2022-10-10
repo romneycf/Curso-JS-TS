@@ -25,30 +25,36 @@ async function fetchRecipes(): Promise<Recipe[]> {
     return request.json();
 }
 
-async function handleRecipes(itemsPerPage = 20, initalItem = 0, finalItem = 20) {
+async function handleRecipes(filter?: string) {
     const inputRecipeFilter = document.querySelector("#input-recipe-filter") as HTMLInputElement;
     const inputFilterValue = (inputRecipeFilter as HTMLInputElement).value.toLowerCase();
     //TENTAR IMPLEMENTAR LOADING COM TRY CATCH
     const response = await fetchRecipes();
     const filteredRecipes = response;//CODAR FILTRO AQUI
-    if (filteredRecipes.length > itemsPerPage){
-        return renderRecipes(filteredRecipes, itemsPerPage, initalItem, finalItem);
-    }
-    renderRecipes(filteredRecipes);
+    return handlePaginator(filteredRecipes);
 }
 
-async function filterRecipes(filters: string) {
-    const response: Recipe[] = await fetchRecipes();
-    // const filteredRecipes = response.filter((Recipe, index) => Recipe['Ingredients'].some(filters));
-    const filteredRecipes = response.splice(0,2).filter((Recipe) => {
-        Recipe['Ingredients'].forEach((e) => {
-            console.log(e);
-            console.log(filters);
-            if(e.includes(filters)){
-                return true;
-            }})});
-    return filteredRecipes
+function handlePaginator(Recipes: Recipe[], itemsPerPage = 20, initalItem = 0, finalItem = 20){
+    console.log(Recipes);
+    if (Recipes.length > itemsPerPage){
+        const splicedRecipes = Recipes.splice(initalItem, finalItem);
+        return renderRecipes(Recipes, splicedRecipes, itemsPerPage, initalItem, finalItem);
+    }
+    return renderRecipes(Recipes);
 }
+
+// async function filterRecipes(filters: string) {
+//     const response: Recipe[] = await fetchRecipes();
+//     // const filteredRecipes = response.filter((Recipe, index) => Recipe['Ingredients'].some(filters));
+//     const filteredRecipes = response.splice(0,2).filter((Recipe) => {
+//         Recipe['Ingredients'].forEach((e) => {
+//             console.log(e);
+//             console.log(filters);
+//             if(e.includes(filters)){
+//                 return true;
+//             }})});
+//     return filteredRecipes
+// }
 
 // async function handleRecipesfilter() {
 //     const inputRecipeFilter = document.querySelector("#input-recipe-filter");
@@ -88,30 +94,29 @@ function modalRecipeClose(){
 //     renderRecipes(Recipes, splicedRecipe);
 // }
 
-function handleSelectPaginator(){
-const selectItemsPerPage = document.querySelector("#select-items-per-page");
-const selectItemsPerPageValue = parseInt((selectItemsPerPage as HTMLSelectElement).value);
-handleRecipes(selectItemsPerPageValue, 0 ,selectItemsPerPageValue);   
-}
+// function handleSelectPaginator(){
+// const selectItemsPerPage = document.querySelector("#select-items-per-page");
+// const selectItemsPerPageValue = parseInt((selectItemsPerPage as HTMLSelectElement).value);
+// handleRecipes(selectItemsPerPageValue, 0 ,selectItemsPerPageValue);   
+// }
 
-function renderRecipes(Recipes: Recipe[], itemsPerPage = 20, initalItem = 0, finalItem = 20) {//tentar passar dois recipes como parametro....
+function renderRecipes(Recipes: Recipe[], splicedRecipes?: Recipe[], itemsPerPage = 20, initalItem = 0, finalItem = 20) {
     const recipesContainer = document.querySelector("#recipes-container");
     const paginatorContainer = document.querySelector("#paginator-container");
+    const biggerRecipes = Recipes;
     var renderedRecipes = Recipes;
-    console.log(Recipes.length);
-    //CODAR LOGICA DE PAGINADOR AQUI DENTRO( RECIPES JÁ VAI ESTAR FILTRADO, FAZER UMA LOGICA PRA POUCOS RESULTADOS NÃO TER PG)
-    if (Recipes.length > itemsPerPage){
-        renderedRecipes = Recipes.splice(initalItem, finalItem);
+    if(splicedRecipes){
+        renderedRecipes = splicedRecipes;
         if(paginatorContainer){
             paginatorContainer.innerHTML=""; 
             paginatorContainer.innerHTML +=`
-            <button onclick="${initalItem} === 0 ? null : handleRecipes(${itemsPerPage}, ${initalItem-(itemsPerPage+1)}, ${finalItem-(itemsPerPage+1)})"><</button>
-            <select id="select-items-per-page" onchange="handleSelectPaginator()">
+            <button class="custom-button" onclick="handlePaginator(${Recipes}, ${itemsPerPage}, ${initalItem-(itemsPerPage+1)}, ${finalItem-(itemsPerPage+1)})"><i class="fa-solid fa-caret-left"></i></button>
+            <select id="select-items-per-page" class="custom-select" onchange="handleSelectPaginator()">
                 <option value=20>20</option>
                 <option value=50>50</option>
                 <option value=100>100</option>
             </select>
-            <button onclick="${(Recipes.length)} === ${finalItem}? null : handleRecipes(${itemsPerPage}, ${finalItem+1}, ${finalItem+itemsPerPage+1})">></button>
+            <button class="custom-button" id="fwd-button" onclick="handlePaginator(${Recipes}, ${itemsPerPage}, ${finalItem+1}, ${finalItem+itemsPerPage+1})"><i class="fa-solid fa-caret-right"></i></button>
             `
         }
     }
@@ -163,15 +168,15 @@ function renderExercise05(bestAuthors: Author[]) {
             </div>
         </div>
         <div id="input-wrapper">
-            <input id="input-recipe-filter"></input>
-            <select id="select-recipe-filter">
+            <input id="input-recipe-filter" class="custom-input"></input>
+            <select id="select-recipe-filter" class="custom-select">
                 <option>Author</option>
                 <option>Description</option>
                 <option>Ingredients</option>
                 <option>Method</option>
             </select>
-            <button onclick="handleRecipesfilter()"><i class="fa-solid fa-search"></i></button>
-            <button onclick="handleRecipes()"><i class="fa-solid fa-rotate"></i></button>
+            <button class="custom-button" onclick="handleRecipesfilter()"><i class="fa-solid fa-search"></i></button>
+            <button class="custom-button" onclick="handleRecipes()"><i class="fa-solid fa-rotate"></i></button>
         </div>
         <div id="main">
             <div id="main-upper">

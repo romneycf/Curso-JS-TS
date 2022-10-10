@@ -5,23 +5,21 @@
 body {
   font-family: sora !important;
   font-size: 13px;
-  /* background: radial-gradient(circle, transparent 20%, #e5ebb5 20%, #e5ebb5 80%, transparent 80%, transparent), radial-gradient(circle, transparent 20%, #e5ebb5 20%, #e5ebb5 80%, transparent 80%, transparent) 52.5px 52.5px, linear-gradient(#5a761e 4.2px, transparent 4.2px) 0 -2.1px, linear-gradient(90deg, #5a761e 4.2px, #e5ebb5 4.2px) -2.1px 0;
-  background-size: 105px 105px, 105px 105px, 52.5px 52.5px, 52.5px 52.5px; */
+  background-color: #e5e5f7;
+  background-image: linear-gradient( 110.4deg,  rgba(255,196,254,1) 9.6%, rgba(251,229,123,1) 91% );
 }
 
 #root{
-  border: 1px solid blue;
   padding: 50px; 
 }
 
 #header{
-  border: 1px solid red;
   text-align: center;
-  font-size: 30px;
+  font-size: 60px;
 }
 
 #best-authors-wrapper{
-  border: 1px solid blue;
+  margin: 30px;
   display: flex;
   justify-content: center;
   gap: 50px;
@@ -34,15 +32,15 @@ body {
 
 .author-img{
   background-color: #e5ebb5;
-  width: 100px;
-  height: 100px;
+  width: 150px;
+  height: 150px;
   box-shadow: 0 0 0 5px #f66;
   border-radius: 50%;
 }
 
 .author-img:hover{
   cursor: pointer;
-  animation: bounceOut 0.4s linear infinite;
+  animation: bounceOut 0.8s linear infinite;
 }
 
 @keyframes bounceOut {
@@ -76,45 +74,63 @@ body {
   text-align: center;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 #input-wrapper{
   text-align: center;
-  border: 1px solid green;
   display: flex;
   justify-content: center;
+  gap: 6px;
 }
 
 #input-recipe-filter{
   min-width: 300px;
 }
 
+.custom-select {
+  background-color: #f66;
+  cursor: pointer;
+  color: #fff;
+  font-size: inherit;
+  padding: 0.5em;
+  padding-right: 2.5em;
+  border: 0;
+  margin: 0;
+  border-radius: 3px;
+  text-indent: 0.01px;
+  text-overflow: "";
+}
+
+.custom-input {
+  background-color: #f66;
+  color: #fff;
+  padding: 0.5em;
+  padding-right: 2.5em;
+  border: 0;
+  margin: 0;
+  border-radius: 3px;
+  max-width: 120px;
+}
+
+::placeholder {
+  color: #fff;
+  opacity: 1; /* Firefox */
+}
+
+.custom-button {
+  cursor: pointer;
+  color: #f66;
+  padding: 0.5em;
+}
+
 #main{
-  border: 1px solid cyan;
+  margin-top: 6px;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-#main-upper{
-  border: 1px solid blue;
-}
-
 #paginator-container{
-  border: 1px solid red;
   display: flex;
+  gap: 2px;
 }
 
 #main-center{
@@ -134,16 +150,19 @@ body {
   text-align: left;
 }
 
-#footer{
-  border: 1px solid grey;
-
-}
-
 .recipe-card{
+  display: flex;
+  justify-content: center;
   border: transparent;
   border-radius: 8px;
   padding: 5px;
-  background-color: grey;
+  background-color: #e5ebb5;
+  border: 1px solid grey;
+}
+
+.recipe-title{
+  font-size: 16px;
+  text-align: center;
 }
 
 .recipe-img{
@@ -181,6 +200,9 @@ body {
   border-radius: 8px;
 }
 
+#footer{
+  border: 1px solid grey;
+}
 
 #back-button {
   padding: 10px;
