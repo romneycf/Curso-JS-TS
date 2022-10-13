@@ -61,42 +61,22 @@ function handlePaginator(Recipes, itemsPerPage = 20, initialItem = 0, finalItem 
 //             }})});
 //     return filteredRecipes
 // }
-// async function handleRecipesfilter() {
-//     const inputRecipeFilter = document.querySelector("#input-recipe-filter");
-//     const inputFilterValue = (inputRecipeFilter as HTMLInputElement).value.toLowerCase().split(",");
-//     if (inputFilterValue) {
-//         const filteredRecipes = await filterRecipes(inputFilterValue);
-//         renderRecipes(filteredRecipes);
-//     }
-// }
-// async function paginatedItems(items: Recipe[], page:number){
-//     const items_per_page = 20;
-//     const paginatedItems = items.splice(0, items_per_page)
-// }
-// function handlePaginator(Recipes: Recipe[], itemsPerPage = 20,  pageNumber = 0){
-//     const arrayLength = Recipes.length;
-//     var splicedRecipe = Recipes;
-//     splicedRecipe = Recipes.splice(pageNumber, itemsPerPage);
-//     return splicedRecipe;
-// }
 function btback5() {
     return window.location.href = '../../index.html';
 }
 function modalRecipeOpen(url) {
     return window.location.href = "#open-modal-" + url;
 }
-function modalRecipeClose() {
-    return window.location.href = "#";
+function modalRecipeClose(url) {
+    // let id = "open-modal-" + url;
+    // const modal = document.getElementById("#"+id);
+    // console.log(modal);
+    // //document.querySelector("#open-modal-" + url) as HTMLDivElement;
+    // if(modal){
+    //     modal.style.display = "none"; 
+    // }
+    return window.location.href = "";
 }
-// function recipesSplice(Recipes: Recipe[], initialItem: number, finalItem: number){
-//     const splicedRecipe = Recipes.splice(initialItem, finalItem);
-//     renderRecipes(Recipes, splicedRecipe);
-// }
-// function handleSelectPaginator(){
-// const selectItemsPerPage = document.querySelector("#select-items-per-page");
-// const selectItemsPerPageValue = parseInt((selectItemsPerPage as HTMLSelectElement).value);
-// handleRecipes(selectItemsPerPageValue, 0 ,selectItemsPerPageValue);   
-// }
 function renderRecipes(Recipes, splicedRecipes, itemsPerPage = 20, initialItem = 0, finalItem = 20) {
     const recipesContainer = document.querySelector("#recipes-container");
     const paginatorContainer = document.querySelector("#paginator-container");
@@ -108,23 +88,26 @@ function renderRecipes(Recipes, splicedRecipes, itemsPerPage = 20, initialItem =
             let frstpg = document.createElement("button");
             frstpg.id = "frstpg-button";
             frstpg.className = "custom-button";
-            frstpg.innerHTML = `<i class="fa-solid fa-caret-left"></i>`;
+            frstpg.innerHTML = `<i class="fa fa-angle-double-left"></i>`;
             frstpg.addEventListener("click", function () {
                 handlePaginator(Recipes, itemsPerPage, 0, itemsPerPage);
             });
             paginatorContainer.appendChild(frstpg);
             let bckbtn = document.createElement("button");
             bckbtn.className = "custom-button";
-            bckbtn.innerHTML = `<i class="fa-solid fa-caret-left"></i>`;
+            bckbtn.innerHTML = `<i class="fa fa-angle-left"></i>`;
             bckbtn.addEventListener("click", function () {
-                handlePaginator(Recipes, itemsPerPage, (initialItem - (itemsPerPage + 1)), (finalItem - (itemsPerPage + 1)));
+                if (initialItem > 0) {
+                    handlePaginator(Recipes, itemsPerPage, (initialItem - (itemsPerPage + 1)), (finalItem - (itemsPerPage + 1)));
+                }
             });
             paginatorContainer.appendChild(bckbtn);
             let selectItems = document.createElement("select");
             selectItems.id = "select-items-per-page";
             selectItems.className = "custom-select";
-            selectItems.value = itemsPerPage.toString();
+            selectItems.selectedIndex = itemsPerPage;
             selectItems.addEventListener("change", function () {
+                console.log(itemsPerPage.toString());
                 console.log(Recipes, parseInt(this.value), 0, parseInt(this.value));
                 handlePaginator(Recipes, parseInt(this.value), 0, parseInt(this.value));
             });
@@ -144,15 +127,17 @@ function renderRecipes(Recipes, splicedRecipes, itemsPerPage = 20, initialItem =
             let fwdbtn = document.createElement("button");
             fwdbtn.id = "fwd-button";
             fwdbtn.className = "custom-button";
-            fwdbtn.innerHTML = `<i class="fa-solid fa-caret-right"></i>`;
+            fwdbtn.innerHTML = `<i class="fa fa-angle-right"></i>`;
             fwdbtn.addEventListener("click", function () {
-                handlePaginator(Recipes, itemsPerPage, finalItem + 1, finalItem + itemsPerPage + 1);
+                if (finalItem < Recipes.length) {
+                    handlePaginator(Recipes, itemsPerPage, finalItem + 1, finalItem + itemsPerPage + 1);
+                }
             });
             paginatorContainer.appendChild(fwdbtn);
             let lstpg = document.createElement("button");
             lstpg.id = "lstpg-button";
             lstpg.className = "custom-button";
-            lstpg.innerHTML = `<i class="fa-solid fa-caret-right"></i>`;
+            lstpg.innerHTML = `<i class="fa fa-angle-double-right"></i>`;
             lstpg.addEventListener("click", function () {
                 handlePaginator(Recipes, itemsPerPage, (Recipes.length - itemsPerPage), (Recipes.length));
             });
@@ -169,7 +154,7 @@ function renderRecipes(Recipes, splicedRecipes, itemsPerPage = 20, initialItem =
                 <img class="recipe-img" src='${item.urlImage}'>
             </div>
         </div>
-        <div id="open-modal-${item.url}" class="modal-window" onclick="modalRecipeClose()">
+        <div id="open-modal-${item.url}" class="modal-window" onclick="modalRecipeClose('${item.url}')">
             <div>
                 <h1 class="recipe-title">'${item.Name}'</h1>
                 <p class="recipe-desc">'${item.Ingredients}'</p>
